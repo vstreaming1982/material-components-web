@@ -24,8 +24,11 @@ import MDCTabBarScrollerFoundation from '../../../packages/mdc-tabs/tab-bar-scro
 
 suite('MDCTabBarScrollerFoundation');
 
-test('exports cssClasses and strings', () => {
+test('exports cssClasses', () => {
   assert.isOk('cssClasses' in MDCTabBarScrollerFoundation);
+});
+
+test('exports strings', () => {
   assert.isOk('strings' in MDCTabBarScrollerFoundation);
 });
 
@@ -241,7 +244,7 @@ test('#scrollBack moves the tab bar back in RTL context', () => {
   foundation.scrollBack();
   raf.flush();
 
-  td.verify(mockAdapter.setTransformStyleForTabBar('translateX(200px)'));
+  td.verify(mockAdapter.setTransformStyleForTabBar('translateX(600px)'));
 });
 
 test('#layout sets indicator enabled states if tab bar overflows', () => {
@@ -274,14 +277,6 @@ test('#layout removes indicator enabled states if tab bar does not overflow', ()
   raf.flush();
 
   td.verify(mockAdapter.removeClassFromForwardIndicator(INDICATOR_ENABLED));
-});
-
-test('#isRTL calls the isRTL() adapter method', () => {
-  const {foundation, mockAdapter} = setupTest();
-
-  foundation.isRTL();
-
-  td.verify(mockAdapter.isRTL());
 });
 
 test('focus event sets the scrollLeft property', () => {
